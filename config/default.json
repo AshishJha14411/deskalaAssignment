@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://ashishjha12:ashishjha12@cluster0.ifyw2.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "deskala"
+}
