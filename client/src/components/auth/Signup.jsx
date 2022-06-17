@@ -3,40 +3,42 @@ import { Container } from "@mui/system";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import { register } from "../../actions/auth";
 import { Link, Navigate } from "react-router-dom";
-const Signup = ({setAlert, register, isAuthenticated}) => {
+const Signup = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     phoneNumber: "",
     password: "",
   });
 
-  const { email, phoneNumber, password} = formData;
+  const { email, phoneNumber, password } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(password.length <= 8){
-      setAlert('Password is not of Lenght 8 or does not contain one uppercase, one lowercase, one number and a special character', 'danger')
-    } else if(email.includes(!'@')){
-      setAlert('Invalid email address', 'danger')
-    } else if((phoneNumber).length !==10){
-      setAlert('Phone Number is not valid', 'danger')
-    } else{
-      register({email, phoneNumber, password})
+    if (password.length <= 8) {
+      setAlert(
+        "Password is not of Lenght 8 or does not contain one uppercase, one lowercase, one number and a special character",
+        "danger"
+      );
+    } else if (email.includes(!"@")) {
+      setAlert("Invalid email address", "danger");
+    } else if (phoneNumber.length !== 10) {
+      setAlert("Phone Number is not valid", "danger");
+    } else {
+      register({ email, phoneNumber, password });
       console.log(formData);
     }
   };
-  if(isAuthenticated) {
+  if (isAuthenticated) {
     return <Navigate to="/Candidate" />;
   }
   return (
@@ -89,7 +91,13 @@ const Signup = ({setAlert, register, isAuthenticated}) => {
           >
             Email Id
           </Typography>
-          <TextField name="email" onChange={onChange} label="email" type="email" required />
+          <TextField
+            name="email"
+            onChange={onChange}
+            label="email"
+            type="email"
+            required
+          />
           <Typography
             variant="h9"
             sx={{
@@ -137,7 +145,7 @@ const Signup = ({setAlert, register, isAuthenticated}) => {
             SignUp
           </Button>
           <Typography>
-            Already have an account? <Link to='/login'>Sign in</Link>
+            Already have an account? <Link to="/login">Sign in</Link>
           </Typography>
         </Box>
       </Box>
@@ -147,9 +155,9 @@ const Signup = ({setAlert, register, isAuthenticated}) => {
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
-}
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
-export default connect(mapStateToProps, {setAlert, register})(Signup);
+  isAuthenticated: PropTypes.bool,
+};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { setAlert, register })(Signup);

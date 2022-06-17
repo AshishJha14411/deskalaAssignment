@@ -18,132 +18,129 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, Navigate } from "react-router-dom";
 import { deleteData } from "../../actions/candidate";
 import { useEffect } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 
 const initialState = {
-  
   name: "",
   dateOfBirth: "",
-  age: '',
+  age: "",
   address: "",
-  pin: '',
+  pin: "",
   state: "",
   email: "",
-}
+};
 
-const Candidate = ({/* candidate:{candidateValue} */deleteData}) => {
+const Candidate = ({ /* candidate:{candidateValue} */ deleteData }) => {
   const data = [
     {
-        "_id": "62a62950e7176a55899895da",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "Punjab",
-        "email": "random@test.com",
-        "shortListStatus": "Rejected",
-        "__v": 0
+      _id: "62a62950e7176a55899895da",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "Punjab",
+      email: "random@test.com",
+      shortListStatus: "Rejected",
+      __v: 0,
     },
     {
-        "_id": "62a6da0bc24de3b84db4833d",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "UP",
-        "email": "random@test.com",
-        "shortListStatus": "Rejected",
-        "__v": 0
+      _id: "62a6da0bc24de3b84db4833d",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "UP",
+      email: "random@test.com",
+      shortListStatus: "Rejected",
+      __v: 0,
     },
     {
-        "_id": "62a6da23c24de3b84db48340",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "QW",
-        "email": "random@test.com",
-        "shortListStatus": "ShortListed",
-        "__v": 0
+      _id: "62a6da23c24de3b84db48340",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "QW",
+      email: "random@test.com",
+      shortListStatus: "ShortListed",
+      __v: 0,
     },
     {
-        "_id": "62a6da29c24de3b84db48343",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "wqqwQW",
-        "email": "random@test.com",
-        "shortListStatus": "ShortListed",
-        "__v": 0
+      _id: "62a6da29c24de3b84db48343",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "wqqwQW",
+      email: "random@test.com",
+      shortListStatus: "ShortListed",
+      __v: 0,
     },
     {
-        "_id": "62a6da29c24de3b84db48343",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "wqqwQW",
-        "email": "random@test.com",
-        "shortListStatus": "ShortListed",
-        "__v": 0
+      _id: "62a6da29c24de3b84db48343",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "wqqwQW",
+      email: "random@test.com",
+      shortListStatus: "ShortListed",
+      __v: 0,
     },
     {
-        "_id": "62a6da29c24de3b84db48343",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "wqqwQW",
-        "email": "random@test.com",
-        "shortListStatus": "ShortListed",
-        "__v": 0
+      _id: "62a6da29c24de3b84db48343",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "wqqwQW",
+      email: "random@test.com",
+      shortListStatus: "ShortListed",
+      __v: 0,
     },
     {
-        "_id": "62a6da29c24de3b84db48343",
-        "name": "Qwerst",
-        "dateOfBirth": "08/01/1996",
-        "age": 25,
-        "address": "new delhi, east noida, colony 45",
-        "pin": 784021,
-        "state": "wqqwQW",
-        "email": "random@test.com",
-        "shortListStatus": "ShortListed",
-        "__v": 0
-    }
-]
-  const handleChange = (event) => {
+      _id: "62a6da29c24de3b84db48343",
+      name: "Qwerst",
+      dateOfBirth: "08/01/1996",
+      age: 25,
+      address: "new delhi, east noida, colony 45",
+      pin: 784021,
+      state: "wqqwQW",
+      email: "random@test.com",
+      shortListStatus: "ShortListed",
+      __v: 0,
+    },
+  ];
+  const handleChange = (event) => {};
 
-  };
-  
   const [selectedRow, setSelectedRow] = React.useState({});
-  const [dataValue, setDataValue] = useState([initialState])
-  const [editRow, setEditRow] = useState({})  
+  const [dataValue, setDataValue] = useState([initialState]);
+  const [editRow, setEditRow] = useState({});
   const editSelectedRow = (row) => {
-    setEditRow(row)
-    return <Navigate to='/AddCandidate' props={editRow}/>
-  }
+    setEditRow(row);
+    return <Navigate to="/AddCandidate" props={editRow} />;
+  };
   const deleteSelectedRow = (row) => {
-    setSelectedRow(row)
-    deleteData(selectedRow._id)
-  }
-  useEffect(()=>{
-   /*  const data = getCandidate()
+    setSelectedRow(row);
+    deleteData(selectedRow._id);
+  };
+  useEffect(() => {
+    /*  const data = getCandidate()
     data.then(function(res){
       console.log(res.data)
     }) */
-    axios.get('http://localhost:5000/api/candidate').then(function(res) {
-    console.log(res.data)
-    setDataValue(res.data)
-  })
-  },[dataValue.length])
+    axios.get("http://localhost:5000/api/candidate").then(function (res) {
+      console.log(res.data);
+      setDataValue(res.data);
+    });
+  }, [dataValue.length]);
   console.log({ selectedRow });
   return (
     <Container fixed>
@@ -158,14 +155,14 @@ const Candidate = ({/* candidate:{candidateValue} */deleteData}) => {
               <TableCell align="right">Edit/Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody >
+          <TableBody>
             {dataValue.map((row) => (
               <TableRow
                 key={row.index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 onClick={() => deleteSelectedRow(row)}
               >
-                <TableCell  component="th" scope="row">
+                <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.dateOfBirth}</TableCell>
@@ -178,7 +175,7 @@ const Candidate = ({/* candidate:{candidateValue} */deleteData}) => {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value=''
+                      value=""
                       label="Results"
                       onChange={handleChange}
                     >
@@ -188,26 +185,27 @@ const Candidate = ({/* candidate:{candidateValue} */deleteData}) => {
                   </FormControl>
                 </TableCell>
                 <TableCell align="right">
-                <ModeEditOutlinedIcon onClick={() => editSelectedRow(row)}/>
-                <DeleteIcon  onClick={() => deleteSelectedRow(row)} />
+                  <ModeEditOutlinedIcon onClick={() => editSelectedRow(row)} />
+                  <DeleteIcon onClick={() => deleteSelectedRow(row)} />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to='/addcandidate'>Add more Candidate</Link>
+      <Link to="/addcandidate">Add more Candidate</Link>
     </Container>
   );
 };
 
-Candidate.propTypes = {/* 
+Candidate.propTypes = {
+  /* 
   getCandidate: PropTypes.func.isRequired, */
   candidateValue: PropTypes.object,
-  deleteData: PropTypes.func
-}
+  deleteData: PropTypes.func,
+};
 const mapStateToProps = (state) => ({
-  candidate: state.candidate
-})
+  candidate: state.candidate,
+});
 
-export default connect(mapStateToProps,{deleteData})(Candidate);
+export default connect(mapStateToProps, { deleteData })(Candidate);

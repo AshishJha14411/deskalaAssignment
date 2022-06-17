@@ -11,33 +11,31 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createCandidate } from "../../actions/candidate";
 const initialState = {
-  
   name: "",
   dateOfBirth: "",
-  age: '',
+  age: "",
   address: "",
-  pin: '',
+  pin: "",
   state: "",
   email: "",
-}
-const AddCandidate = ({createCandidate}, props) => {
+};
+const AddCandidate = ({ createCandidate }, props) => {
+  const [formData, setFormData] = useState(initialState);
 
-  const [formData, setFormData] = useState(initialState)
-
-  console.log(props)
-  const {name, dateOfBirth, age, address,pin, state, email} = formData;
+  console.log(props);
+  const { name, dateOfBirth, age, address, pin, state, email } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    createCandidate(formData)
-  }
-  console.log(formData)
-  
+    createCandidate(formData);
+  };
+  console.log(formData);
+
   return (
     <Container>
       <Grid
@@ -95,7 +93,7 @@ const AddCandidate = ({createCandidate}, props) => {
                 type="text"
                 value={name}
                 name="name"
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </Grid>
             <Grid
@@ -120,7 +118,7 @@ const AddCandidate = ({createCandidate}, props) => {
                 type="text"
                 name="address"
                 value={address}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </Grid>
           </Grid>
@@ -153,7 +151,7 @@ const AddCandidate = ({createCandidate}, props) => {
                 type="text"
                 value={dateOfBirth}
                 name="dateOfBirth"
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </Grid>
             <Grid
@@ -182,10 +180,13 @@ const AddCandidate = ({createCandidate}, props) => {
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   placeholder="Select your State"
-                  input={<OutlinedInput 
-                    name="state"
-                    value={state}
-                    onChange={e => onChange(e)} />}
+                  input={
+                    <OutlinedInput
+                      name="state"
+                      value={state}
+                      onChange={(e) => onChange(e)}
+                    />
+                  }
                 >
                   {names.map((name) => (
                     <MenuItem key={name} value={name}>
@@ -225,7 +226,7 @@ const AddCandidate = ({createCandidate}, props) => {
                 type="number"
                 name="age"
                 value={age}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </Grid>
             <Grid
@@ -249,7 +250,7 @@ const AddCandidate = ({createCandidate}, props) => {
                 label="Enter your 6 digit Pin Code"
                 type="number"
                 name="pin"
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
                 value={pin}
               />
             </Grid>
@@ -282,65 +283,62 @@ const AddCandidate = ({createCandidate}, props) => {
                 label="enter your email"
                 type="email"
                 name="email"
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
                 value={email}
               />
             </Grid>
             <Grid
-            sx={{
-              
-              display: "flex",
-              alignItems: "space-between",
-              flexDirection: "row",
-              paddingLeft: '10rem',
-              margin: '1rem',
-            }}
-          >
-            <Link to='/candidate'>
-
-            <Button
-            variant="contained"
-            sx={{
-              color: 'black',
-              bgcolor: "white",
-              margin: '1rem',
-              "&:hover": {
-                background: "#bdbdbd",
-              },
-            }}
+              sx={{
+                display: "flex",
+                alignItems: "space-between",
+                flexDirection: "row",
+                paddingLeft: "10rem",
+                margin: "1rem",
+              }}
             >
-            Cancel
-          </Button>
-            </Link>
-            <Link to='/candidate'>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#00b8d4",
-              margin: '1rem',
-              "&:hover": {
-                background: "#006064",
-              },
-            }}
-            onClick={onSubmit}
-          >
-            Create
-          </Button>
-          </Link>
+              <Link to="/candidate">
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: "black",
+                    bgcolor: "white",
+                    margin: "1rem",
+                    "&:hover": {
+                      background: "#bdbdbd",
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Link>
+              <Link to="/candidate">
+                <Button
+                  variant="contained"
+                  sx={{
+                    bgcolor: "#00b8d4",
+                    margin: "1rem",
+                    "&:hover": {
+                      background: "#006064",
+                    },
+                  }}
+                  onClick={onSubmit}
+                >
+                  Create
+                </Button>
+              </Link>
+            </Grid>
           </Grid>
-          </Grid>
-          
         </Grid>
       </Grid>
     </Container>
   );
 };
 AddCandidate.propTypes = {
-  createCandidate: PropTypes.func.isRequired
-}
+  createCandidate: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-  candidate: state.candidate
-})
+  candidate: state.candidate,
+});
 
-export default connect(mapStateToProps,{createCandidate})(AddCandidate);
+export default connect(mapStateToProps, { createCandidate })(AddCandidate);

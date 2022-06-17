@@ -1,48 +1,49 @@
-import React,{useState} from "react";
-import { Container, padding } from "@mui/system";
+import React, { useState } from "react";
+import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Signup from "./Signup";
 import { Link, Navigate } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { login } from "../../actions/auth";
 
-import {connect} from 'react-redux'
-const Login = ({login, isAuthenticated}) => {
+import { connect } from "react-redux";
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const { email, password} = formData;
+  const { email, password } = formData;
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
+    console.log(formData);
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-      login(email,password)
-    }
-  
+    login(email, password);
+  };
 
-//Redirect is logged in
-if(isAuthenticated) {
-  return <Navigate to="/Candidate" />;
-}
+  //Redirect is logged in
+  if (isAuthenticated) {
+    return <Navigate to="/Candidate" />;
+  }
 
-  console.log(isAuthenticated)
+  console.log(isAuthenticated);
 
   return (
-    <Container maxWidth='sm' sx={{
-      display: 'flex',
-          justifyContent: 'space-around',
-    }}>
-      <Grid container 
+    <Container
+      maxWidth="sm"
+      sx={{
+        display: "flex",
+        justifyContent: "space-around",
+      }}
+    >
+      <Grid
+        container
         sx={{
-          justifyContent: 'center',
+          justifyContent: "center",
           bgcolor: "#e0e0e0",
           minHeight: "100%",
           padding: "2rem",
@@ -113,8 +114,7 @@ if(isAuthenticated) {
 
           <Button
             variant="contained"
-            
-          onClick={onSubmit}
+            onClick={onSubmit}
             sx={{
               marginTop: "3rem",
               bgcolor: "#00b8d4",
@@ -135,8 +135,7 @@ if(isAuthenticated) {
               },
             }}
           >
-            
-          <Link to='/signup'>Sign up</Link>
+            <Link to="/signup">Sign up</Link>
           </Button>
         </Grid>
       </Grid>
@@ -145,10 +144,10 @@ if(isAuthenticated) {
 };
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
-}
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
+  isAuthenticated: PropTypes.bool,
+};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(mapStateToProps, { login })(Login);
